@@ -34,7 +34,7 @@ pnpm run start:dev
 | /translate-keys     | GET    | Lista todos las keys que se traduciran                    |
 | /translate-keys     | POST   | Crea una nueva key para traducir                          |
 | /translate-keys/:id | GET    | Obtiene una key por su id                                 |
-| /translate-keys/:id | PUT    | Actualiza una key por su id                               |
+| /translate-keys/:id | PATCH    | Actualiza una key por su id                               |
 | /translate-keys/:id | DELETE | Elimina una key por su id                                 |
 | /films              | GET    | Lista todas las peliculas de swapi y con la key traducida |
 | /films/:id          | GET    | Obtiene una pelicula por su id y con la key traducida     |
