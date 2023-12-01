@@ -1,27 +1,37 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TranslateKeysModule } from './translate-keys/translate-keys.module';
-import { RootsModule } from './roots/roots.module';
-import { PeoplesModule } from './peoples/peoples.module';
 import { FilmsModule } from './films/films.module';
-import { StarshipsModule } from './starships/starships.module';
-import { VehiclesModule } from './vehicles/vehicles.module';
-import { SpeciesModule } from './species/species.module';
-import { PlanetsModule } from './planets/planets.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CommunModule } from './commun/commun.module';
+import config from './config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      load: [config],
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'mysql',
+        host: configService.get('DB_HOST'),
+        port: configService.get('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_DATABASE'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true,
+      }),
+    }),
     TranslateKeysModule,
-    RootsModule,
-    PeoplesModule,
     FilmsModule,
-    StarshipsModule,
-    VehiclesModule,
-    SpeciesModule,
-    PlanetsModule,
+    CommunModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

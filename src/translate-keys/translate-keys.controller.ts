@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { TranslateKeysService } from './translate-keys.service';
 import { CreateTranslateKeyDto } from './dto/create-translate-key.dto';
 import { UpdateTranslateKeyDto } from './dto/update-translate-key.dto';
@@ -13,8 +22,20 @@ export class TranslateKeysController {
   }
 
   @Get()
-  findAll() {
-    return this.translateKeysService.findAll();
+  findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+    @Query('module') module: string,
+    @Query('language') language: string,
+    @Query('key') key: string,
+  ) {
+    return this.translateKeysService.findAll({
+      page,
+      limit,
+      module,
+      language,
+      key,
+    });
   }
 
   @Get(':id')
@@ -23,7 +44,10 @@ export class TranslateKeysController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTranslateKeyDto: UpdateTranslateKeyDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateTranslateKeyDto: UpdateTranslateKeyDto,
+  ) {
     return this.translateKeysService.update(+id, updateTranslateKeyDto);
   }
 
