@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "9d22ecb8-8807-41ef-880b-5b958405f0f5",
+		"name": "Api start Wards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25996956"
+	},
+	"item": [
+		{
+			"name": "Films",
+			"item": [
+				{
+					"name": "getFilms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/films?lang=es",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"films"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "es"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFilm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/films/:id?lang=es",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"films",
+								":id"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "es"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "start wards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.py4e.com/api/planets/schema",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"py4e",
+						"com"
+					],
+					"path": [
+						"api",
+						"planets",
+						"schema"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/translate-keys",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"translate-keys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "created",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"module\": \"films\",\r\n  \"language\": \"es\",\r\n  \"key\": \"episode_id\",\r\n  \"value\": \"episodio_id\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/translate-keys",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"translate-keys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"module\": \"planets\",\r\n  \"language\": \"es\",\r\n  \"key\": \"diameter\",\r\n  \"value\": \"diametro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/translate-keys/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"translate-keys",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"module\": \"planets\",\r\n  \"language\": \"es\",\r\n  \"key\": \"diameter\",\r\n  \"value\": \"diametro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/translate-keys/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"translate-keys",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

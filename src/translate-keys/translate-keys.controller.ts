@@ -11,8 +11,11 @@ import {
 import { TranslateKeysService } from './translate-keys.service';
 import { CreateTranslateKeyDto } from './dto/create-translate-key.dto';
 import { UpdateTranslateKeyDto } from './dto/update-translate-key.dto';
+import { FindAllTranslateKeyDto } from './dto/find-all-translate-key.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('translate-keys')
+@ApiTags('translate-keys')
 export class TranslateKeysController {
   constructor(private readonly translateKeysService: TranslateKeysService) {}
 
@@ -22,13 +25,8 @@ export class TranslateKeysController {
   }
 
   @Get()
-  findAll(
-    @Query('page') page: number = 1,
-    @Query('limit') limit: number = 10,
-    @Query('module') module: string,
-    @Query('language') language: string,
-    @Query('key') key: string,
-  ) {
+  findAll(@Query() parmas: FindAllTranslateKeyDto) {
+    const { page, limit, module, language, key } = parmas;
     return this.translateKeysService.findAll({
       page,
       limit,
